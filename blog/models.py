@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import time
-from .context_processors import get_time
+from .context_processors import get_time #Generates an ID based on current time
 
 
 # Create your models here.
@@ -11,10 +11,14 @@ class Author(models.Model):
     email_address = models.EmailField()
     phone_number = models.CharField()
     date_joined = models.DateField( auto_now_add = True )
+    author_id = models.CharField( max_length= 255 , blank = True )
     def __str__(self):
         return self.name
 
     def save(self , *args , **kwargs):
+        if not self.pk:
+            current_time = get_time()
+            self.author_id = current_time
         super().save(*args , **kwargs)
 
 
@@ -25,9 +29,16 @@ class Post(models.Model):
     title = models.CharField( max_length = 200 )
     content = models.TextField()
     author = models.ForeignKey( Author , on_delete = models.CASCADE , related_name = "posts" )
+    post_id = models.CharField( max_length= 255 , blanK= True )
     date_posted = models.TimeField()
     def __str__(self):
         return self.title
+    
+    def save(self , *args , **kwargs):
+        if not self.pk:
+            current_time = get_time()
+            self.post_id = current_time
+        super.save(*args , **kwargs)
 
 
 class Comment(models.Model):
