@@ -2,12 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 import time
 
-current_time = time.localtime()
-current_minute = current_time.tm_min
-current_hour = current_time.tm_hour
-current_day = current_time.tm_mday
-current_month = current_time.tm_mon
-current_year = current_time.tm_year
+def get_time():
+    current_time = time.localtime()
+    current_minute = current_time.tm_min
+    current_hour = current_time.tm_hour
+    current_day = current_time.tm_mday
+    current_month = current_time.tm_mon
+    current_year = current_time.tm_year
+    return f"{current_minute}{current_hour}{current_day}{current_month}{current_year}"
 
 # Create your models here.
 class Author(models.Model):
