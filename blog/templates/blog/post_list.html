@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+Post|| {{post}}
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+  <div>
+   <u> <strong>{{post}}</strong> </u>
+    <br>
+    {{post.content}}
+  </div>
+  <br>
+  <br>
+  <div>
+    <p>Comments</p>
+    <details>
+    {% for comment in post.comments.all %}
+  <summary> <strong>{{ comment.name }}</strong> </summary>  
+  {{ comment.content }}
+    {% endfor %}
+    </details>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div>
+  People who reportd this post: 
+  <ul>
+    {% for report in post.reports.all %}
+    <li>
+    <details>
+      <summary> <strong>{{ report.reporter }}</strong> </summary>  
+      {{ report.content }}
+      {{ report.date_reported }}
+    {% endfor %}
+    </details>
+    </li>
+  </ul>
+  </div>
+{% endblock %}

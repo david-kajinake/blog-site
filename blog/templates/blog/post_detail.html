@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+  Add comment
+{% endblock %}
+
+{% block content %}
+  <h3>Leave a comment</h3>
+  <p>
+    <strong>
+      <em>
+        {{post}}
+      </em>
+    </strong>
+    {{post.content}}
+  </p>
+  <form action="{% url 'add_comment' post.id %}" method = "POST" >
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name = "name" required >
+    <label for="content">Content:</labe>
+    <textarea name="content" id="content" rows = "4" required ></textarea>
+    <br>
+    <br>
+    <button type = "submit">Submit</button>
+  </form>
+  <br><br><br>
+  <p>Report this post</p>
+  <form action="{% url 'add_report' post.id %}" method="post" >
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" name="name" id=""name required >
+    <label for="content">Add your report here:</label>
+    <textarea type="text" name="content" id="content" required ></textarea> 
+    <button type="submit">Report</button>
+  </form>
+{% endblock %}

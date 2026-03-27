@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header{
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+main{
+    display: flex;
+
+}
+main .side_panel{
+    height: auto;
+    display: block
+}
+main .side_panel ul{
+    display: grid;
+    padding: 10px;
+}

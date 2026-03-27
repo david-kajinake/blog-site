@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% load static  %}
+{% block title %}
+ Blog Point
+{% endblock %}
+
+{% block content %}
+<div class = "main_content_div" >
+    <h1>Hello {{ user.name }} </h1>
+    <h2>Your Email adress is: {{ user.email_address }}</h2>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <header>
+        <ul style="display: flex; justify-content: space-evenly;" >
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+            <li><a href="{% url 'pricing' %}">Pricing</a></li>
+            <li><a href="{% url 'about' %}"></a></li>
+        </ul>
+    </header>
+    <main>
+        <div>
+        {% block content %}
+        {% endblock %}
+        </div>
+    </main>
+    <footer>
+        <br>
+        <br>
+        <br>
+        <h3>Footer</h3>
+        <ul style="display: flex; justify-content: space-evenly;" >
+            <li>
+                content 1
+            </li>
+            <li>
+                content 2
+            </li>
+            <li>
+                content 3
+            </li>
+        </ul>
+    </footer>
+</body>
+</html>

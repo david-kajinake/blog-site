@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block content %}
+   <div id="search_div" >
+    <input type="text" placeholder="Max Size" id="max_input">
+    <input type="text" placeholder="Mini Size" id="mini_input">
+    <button id="runButton" > Run search </button>
+   </div>
+   <script>
+    max_number = document.getElementById("max_input").value;
+    mini_number = document.getElementById("mini_input").value;
+     run_button = document.getElementById("runButton");
+     run_button.addEventListener("click",()=>{
+      confirm("Confirm searching for: " + max_number + " by " + mini_number + " house sizes" );
+     });
+   </script>
+{% endblock %}

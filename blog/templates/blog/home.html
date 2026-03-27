@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+{% block title %}
+Blog site
+{% endblock %}
+
+{% block content %}
+      <p>
+          Welcome to the blog site
+      </p>
+      <ul>
+         <li>Join the biggest blog community</li>
+         <li>Share your mind</li>
+         <li>Provide your perception upon other blogs</li>
+      </ul>
+      <button>
+         <a href="{% url 'user_login' %}">Start Now </a>
+      </button>
+      <br><br>
+      <h3>Blogs of the day</h3>
+      <div>
+         {% for post in posts %}
+         <div>
+            <details>
+               <summary>
+                  <strong> <em> {{post}} </em> </strong>
+               </summary>
+               {{post.content}}
+               <br>
+               <strong>{{post.date_pposted}}</strong>
+               <details>
+                  <summary>
+                     <u>Comments</u>
+                  </summary>
+                  {% for comment in post.comments.all %}
+                  <li>
+                     <u><strong>{{comment}}</strong></u>: {{comment.content}}
+                  </li>
+                  <p>Replies for this comment: </p>
+                  {% for reply in comment.replies.all %}
+                     <p>{{reply}}: {{reply.content}}</p>
+                  {% endfor %}
+                  {% endfor %}
+               </details>
+            </details>
+         </div>
+         <br>
+         {% endfor %}
+      </div>
+{% endblock %}

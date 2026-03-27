@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'blog/index.css' %}?v=5">
+    <title>{% block title  %} Blog site {% endblock %} </title>
+</head>
+<body>
+    <header> <h1> Blog Point </h1>
+    <nav>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'pricing' %}">Pricing</a>
+    </nav>
+    <div class = "search_div" >
+     <input type="text" id="search_input" name = "search_input" placeholder = "Search for something">
+    <button type = "submit" >Search</button>
+    </div>
+    </header>
+    
+    <main> 
+        <div class="side_panel" >
+            <ul>
+                <li>Home</li>
+                <li>Analytics</li>
+                 <li>Chats</li>
+                <li>Profile</li>
+                <li>Settings</li>
+                <li>Logout</li>
+            </ul>
+        </div>
+        {% block content %}
+        {% endblock %} 
+    </main>
+    <footer>
+        Footer Text
+    </footer>
+    
+</body>
+</html>
