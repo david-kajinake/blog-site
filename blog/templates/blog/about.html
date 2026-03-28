@@ -1,4 +1,24 @@
-{% extends "blog/base.html" %}
-{% block content %}
+{% extends 'blog/layout.html' %}
 
+{% block title %}About | My Django Blog{% endblock %}
+
+{% block content %}
+<div class="about-container" style="max-width: 800px; margin: 0 auto; background: #fff; padding: 3rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+    
+    <h1 style="color: #2c3e50; margin-bottom: 1.5rem; font-size: 2.5rem;">About Us</h1>
+    <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">
+        Welcome to <strong>My Django Blog</strong>, your go-to resource for exploring the modern web. Born out of a passion for clean code and intuitive design, this platform is dedicated to sharing practical tutorials, industry insights, and deep dives into the world of web technologies. Whether you are a beginner writing your first lines of Python or an experienced developer looking to master CSS Grid and backend architecture, we provide the tools and knowledge you need to build better digital experiences.
+    </p>
+
+    <h2 style="color: #2c3e50; margin-bottom: 1rem; border-bottom: 2px solid #ecf0f1; padding-bottom: 0.5rem;">Our Mission</h2>
+    <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">
+        Our mission is to empower developers and designers of all skill levels by breaking down complex technical concepts into accessible, actionable, and engaging content. We strive to foster a continuous learning environment where knowledge is openly shared, helping our readers solve real-world coding challenges and build applications they can be proud of.
+    </p>
+
+    <h2 style="color: #2c3e50; margin-bottom: 1rem; border-bottom: 2px solid #ecf0f1; padding-bottom: 0.5rem;">Our Vision</h2>
+    <p style="font-size: 1.1rem; color: #555;">
+        To become a leading, community-driven educational hub that inspires the next generation of tech creators to build scalable, beautiful, and innovative software for the web.
+    </p>
+
+</div>
 {% endblock %}

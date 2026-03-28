@@ -78,9 +78,9 @@ class Like(models.Model):
 
 class About(models.Model):
     about_name = models.CharField( max_length= 255 , default= "about site" )
-    about_text = models.CharField( max_length= 10000 )
-    about_mission = models.CharField( max_length= 10000 , blank= True )
-    about_vision = models.CharField( max_length= 10000 , blank= True )
+    about_text = models.TextField( max_length= 10000 )
+    about_mission = models.TextField( max_length= 10000 , blank= True )
+    about_vision = models.TextField( max_length= 10000 , blank= True )
     date_created = models.DateField( auto_now_add= True )
 
     def __str__(self):
