@@ -15,14 +15,14 @@
     <header class="site-header">
         <nav class="main-nav">
             <div class="logo">
-                <a href="/">BlogLogo</a>
+                <a href="/">Blog</a>
             </div>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Blogs</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Signup</a></li>
+                <li class="header-nav-item" data-tag="home">Home</li>
+                <li class="header-nav-item" data-tag="blogs" >Blogs</li>
+                <li class="header-nav-item" data-tag="about" >About</li>
+                <li class="header-nav-item" data-tag="login" >Login</li>
+                <li class="header-nav-item" data-tag="signup" >Signup</li>
             </ul>
         </nav>
     </header>
@@ -64,7 +64,9 @@
         </div>
     </footer>
 
-    {% block extra_js %}{% endblock %}
+    {% block extra_js %}
+    <script src="{% static 'blog/layout.js' %}?v={{ js_latest }}"></script>
+    {% endblock %}
     
 </body>
 </html>
