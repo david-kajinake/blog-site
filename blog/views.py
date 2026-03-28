@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render , redirect , get_object_or_404 
 from django.http import HttpResponse
-from . models import Post , Report , Comment  ,Author
+from . models import Post , Report , Comment  ,Author , About   
 
 posts = Post.objects.all()
 
@@ -42,7 +42,15 @@ def add_report(request , post_id):
 
 
 def about_page(request):
-    return render( request, "blog/about.html" )
+    try:
+        about = About.objects.get( about_name = "about site" )
+    except Exception as e:
+        about = "No About info available"
+    return render( request, "blog/about.html",{
+        "about": about 
+    })
+
+
 
 def pricing(request):
     return render( request, "blog/pricing.html" )
