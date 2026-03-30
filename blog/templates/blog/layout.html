@@ -65,7 +65,8 @@
     </footer>
 
     {% block extra_js %}
-    <script src="{% static 'blog/layout.js' %}?v={{ js_latest }}"></script>
+    {{block.super}}
+    <script type="module" src="{% static 'blog/js/layout.js' %}?v={{ js_latest }}"></script>
     {% endblock %}
     
 </body>

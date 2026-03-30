@@ -22,13 +22,18 @@
         
         <div class="blog-grid">
             {% for post in  posts %}
-             <article class="blog-card" >
-                <div class="card-image" placeholder-img ></div>
+             <article class="blog-card" id="{{post.post_id}}" >
+                <div class="card-image placeholder-img"></div>
                 <div class="card-content">
-                    <span class="category">
-                        <h3><a href="#">{{post.title}}</a></h3>
-                        <p class="excerpt">{{post.content}}</p>
-                    </span> 
+                    <span class="category"></span> 
+                    <h3><a href="#">{{post.title}}</a></h3>
+                    <p class="excerpt" style="overflow: hidden; text-overflow: ellipsis; height: 100px;" >
+                        {{post.content}}
+                    </p>
+                    <div class="card-meta">
+                        <span class="author">By {{post.author}}</span>
+                        <span class="date">{{post.date_posted}}</span>
+                    </div>
                 </div>
              </article>
             {% endfor %}

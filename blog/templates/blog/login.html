@@ -1,19 +1,42 @@
-{% extends "blog/base.html" %}
-{% block title %}
-Login 
+{% extends "blog/layout.html" %}
+{% load static %}
+{% block title %}Login | My Django Blog{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/css/login.css' %}?v={{css_lates}}">
 {% endblock %}
+
 {% block content %}
-<h4>Login</h4>
-{% for message in messages %}
-  {{ message }}
-{% endfor %}
-<form method="POST" action = "{% url 'user_login' %}" >
-  {% csrf_token %}
-  <input type="text" placeholder="Username" name = "username" >
-  <input type = "password" placeholder = "password" name = "password" >
-  <button type="submit" > Login </button>
-</form>
-<p>
-  Want to know more about the site ? <a href="{% url 'about' %}">visit About page </a>
-</p>
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Please log in to your account</p>
+        </div>
+
+        <div class="auth-message">
+          <p>
+          <strong>Login failed</strong>
+          </p>
+        </div>
+         
+        <form action="#" method="POST" class="auth-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+
+            <button type="submit" class="auth-button">Login</button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="#">Create one here</a></p>
+        </div>
+    </div>
+</div>
 {% endblock %}

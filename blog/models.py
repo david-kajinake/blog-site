@@ -30,7 +30,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey( Author , on_delete = models.CASCADE , related_name = "posts" )
     post_id = models.CharField( max_length= 255 , blank= True )
-    date_posted = models.TimeField(auto_now_add=True)
+    date_posted = models.DateTimeField(auto_now_add=True , blank = True )
     def __str__(self):
         return self.title
     
