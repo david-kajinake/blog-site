@@ -1,0 +1,144 @@
+/* =========================================
+   Blogs Page - YouTube Style Layout
+   ========================================= */
+
+.blogs-page-container {
+    padding-top: 20px;
+}
+
+.blogs-header {
+    margin-bottom: 30px;
+}
+
+.blogs-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #0f0f0f;
+}
+
+/* Filter bar like YouTube's homepage tags */
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.filter-bar span {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.filter-bar span.active {
+    background: #0f0f0f;
+    color: white;
+}
+
+/* The Grid */
+.video-style-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px 16px; /* Larger vertical gap for text space */
+}
+
+/* Individual Card */
+.video-card {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.thumbnail-link {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    position: relative;
+    background-color: #ccc;
+    transition: border-radius 0.2s ease;
+}
+
+.video-card:hover .thumbnail {
+    border-radius: 0; /* YouTube-like hover effect */
+}
+
+/* "Video length" badge */
+.read-time {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Content Area below Thumbnail */
+.video-info-wrapper {
+    display: flex;
+    gap: 12px;
+}
+
+.author-avatar img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.video-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #0f0f0f;
+    margin-bottom: 6px;
+    /* Limit title to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: inherit;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta-author, 
+.video-meta-stats {
+    font-size: 0.85rem;
+    color: #606060;
+}
+
+.video-meta-author:hover {
+    color: #0f0f0f;
+}
+
+/* Placeholder thumb style */
+.placeholder-thumb {
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .video-style-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .thumbnail {
+        border-radius: 0; /* Mobile YouTube look */
+    }
+}

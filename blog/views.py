@@ -17,6 +17,14 @@ def home(request):
     return render(request , "blog/home.html",{
         "posts": posts
     })
+def blogs(request):
+    blogs = Post.objects.all()
+    return render(request , "blog/blogs.html",{
+        "blogs": blogs
+    })
+
+
+
 def post_list(request , post_id ):
     post = get_object_or_404(Post , id = post_id)
     return render(request , "blog/post_list.html" , {

@@ -1,0 +1,86 @@
+{% extends 'blog/layout.html' %}
+{% load static %}
+
+{% block title %}All Blogs | My Django Blog{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'blog/css/blogs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="blogs-page-container">
+    <header class="blogs-header">
+        <h1>All Posts</h1>
+        <div class="filter-bar">
+            <span class="active">All</span>
+            <span>Python</span>
+            <span>Django</span>
+            <span>CSS</span>
+            <span>Career</span>
+        </div>
+    </header>
+
+    <div class="video-style-grid">
+        <article class="video-card">
+            <a href="#" class="thumbnail-link">
+                <div class="thumbnail placeholder-thumb">
+                    <span class="read-time">8:45</span>
+                </div>
+            </a>
+            <div class="video-info-wrapper">
+                <div class="author-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Jane+Doe&background=random" alt="Author">
+                </div>
+                <div class="video-text">
+                    <h3 class="video-title">
+                        <a href="#">Building a Real-time Chat App with Django Channels</a>
+                    </h3>
+                    <p class="video-meta-author">Jane Doe</p>
+                    <p class="video-meta-stats">1.2k views • 2 days ago</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="video-card">
+            <a href="#" class="thumbnail-link">
+                <div class="thumbnail placeholder-thumb" style="background-color: #34495e;">
+                    <span class="read-time">5:12</span>
+                </div>
+            </a>
+            <div class="video-info-wrapper">
+                <div class="author-avatar">
+                    <img src="https://ui-avatars.com/api/?name=John+Smith&background=random" alt="Author">
+                </div>
+                <div class="video-text">
+                    <h3 class="video-title">
+                        <a href="#">10 CSS Tricks Every Junior Developer Should Know</a>
+                    </h3>
+                    <p class="video-meta-author">John Smith</p>
+                    <p class="video-meta-stats">850 views • 1 week ago</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="video-card">
+            <a href="#" class="thumbnail-link">
+                <div class="thumbnail placeholder-thumb" style="background-color: #e67e22;">
+                    <span class="read-time">12:00</span>
+                </div>
+            </a>
+            <div class="video-info-wrapper">
+                <div class="author-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Alex+Lee&background=random" alt="Author">
+                </div>
+                <div class="video-text">
+                    <h3 class="video-title">
+                        <a href="#">The Future of Python in 2026: What's Changing?</a>
+                    </h3>
+                    <p class="video-meta-author">Alex Lee</p>
+                    <p class="video-meta-stats">5.4k views • 3 hours ago</p>
+                </div>
+            </div>
+        </article>
+
+        </div>
+</div>
+{% endblock %}
