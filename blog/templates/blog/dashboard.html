@@ -1,12 +1,80 @@
 {% extends 'blog/base.html' %}
-{% load static  %}
-{% block title %}
- Blog Point
+{% load static %}
+
+{% block title %}My Dashboard | My Django Blog{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'blog/css/dashboard.css' %}?v={{css_latest}}">
 {% endblock %}
 
 {% block content %}
-<div class = "main_content_div" >
-    <h1>Hello {{ user}} </h1>
-    <h2>Your Email adress is: {{ user.email }}</h2>
+<div class="dashboard-wrapper">
+    
+    <section class="db-welcome">
+        <div class="db-welcome-text">
+          <!--   <h1>Hello, {{ request.user.username|default:"Creator" }}!</h1> -->
+            <h1>Hello {{ user.author.name }}</h1>
+            <p>Here's what's happening with your content today.</p>
+        </div>
+        <a href="#" class="db-create-btn">+ New Blog Post</a>
+    </section>
+
+    <section class="db-stats-grid">
+        <div class="db-stat-card">
+            <span class="db-stat-icon">👁️</span>
+            <div class="db-stat-info">
+                <h3>Total Views</h3>
+                <p class="db-stat-value">14,208</p>
+            </div>
+        </div>
+        <div class="db-stat-card">
+            <span class="db-stat-icon">✍️</span>
+            <div class="db-stat-info">
+                <h3>My Blogs</h3>
+                <p class="db-stat-value">12</p>
+            </div>
+        </div>
+        <div class="db-stat-card">
+            <span class="db-stat-icon">💬</span>
+            <div class="db-stat-info">
+                <h3>Comments</h3>
+                <p class="db-stat-value">89</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="db-recent-posts">
+        <div class="db-section-header">
+            <h2>Your Recent Blogs</h2>
+            <a href="#">View All</a>
+        </div>
+        <div class="db-table-container">
+            <table class="db-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mastering Django Templates</td>
+                        <td><span class="status-badge published">Published</span></td>
+                        <td>Oct 24, 2026</td>
+                        <td><a href="#" class="edit-link">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>CSS Grid for Beginners</td>
+                        <td><span class="status-badge draft">Draft</span></td>
+                        <td>Oct 22, 2026</td>
+                        <td><a href="#" class="edit-link">Edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
 </div>
 {% endblock %}

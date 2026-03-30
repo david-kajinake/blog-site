@@ -4,38 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'blog/css/index.css' %}?v={{css_latest}}">
-    <title>{% block title  %} Blog site {% endblock %} </title>
+    <title>{% block title %}Dashboard | My Django Blog{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'blog/css/base.css' %}?v={{css_latest}}">
+    
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <header> <h1> Blog Point </h1>
-    <nav>
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'pricing' %}">Pricing</a>
-    </nav>
-    <div class = "search_div" >
-     <input type="text" id="search_input" name = "search_input" placeholder = "Search for something">
-    <button type = "submit" >Search</button>
-    </div>
-    </header>
-    
-    <main> 
-        <div class="side_panel" >
-            <ul>
-                <li>Home</li>
-                <li>Analytics</li>
-                 <li>Chats</li>
-                <li>Profile</li>
-                <li>Settings</li>
-                <li>Logout</li>
-            </ul>
+
+    <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle-checkbox">
+
+    <header class="auth-header">
+        <div class="header-left">
+            <label for="mobile-menu-toggle" class="hamburger-menu">
+                <span></span><span></span><span></span>
+            </label>
+            <a href="/" class="brand-logo">BlogDash</a>
         </div>
-        {% block content %}
-        {% endblock %} 
-    </main>
-    <footer>
-        Footer Text
-    </footer>
-    
+        
+        <nav class="header-nav">
+            <a href="#">Home</a>
+            <a href="#">Blogs</a>
+            <a href="#">About</a>
+            
+            <form action="#" method="POST" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="logout-link">Logout</button>
+            </form>
+        </nav>
+    </header>
+
+    <div class="app-container">
+        
+        <aside class="auth-sidebar">
+            <nav class="sidebar-menu">
+                <p class="menu-label">Menu</p>
+                <a href="#" class="sidebar-link active">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="#" class="sidebar-link">
+                    <span class="icon">📝</span> My Blogs
+                </a>
+                
+                <p class="menu-label">Personal</p>
+                <a href="#" class="sidebar-link">
+                    <span class="icon">👤</span> Profile
+                </a>
+                <a href="#" class="sidebar-link">
+                    <span class="icon">⚙️</span> Settings
+                </a>
+            </nav>
+        </aside>
+
+        <main class="auth-main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+        
+    </div>
+
+    {% block extra_js %}
+    <script type="module" src="{% static 'blog/js/base.js' %}?v={{js_latest}}"></script>
+    {% endblock %}
 </body>
 </html>

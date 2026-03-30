@@ -89,17 +89,19 @@ def pricing(request):
 
 def signup(request):
     if request.method == "POST":
-        name = request.POST.get("name")
+        first_name = request.POST.get("first-name")
+        other_name = request.POST.get("other-name")
+        name = f"{first_name} {other_name}"
         phone = request.POST.get("phone")
         email = request.POST.get("email")
         password = request.POST.get("password")
-        confirmed_password = request.POST.get("confirm_password")
-        user_exists = User.objects.filter( username = email )
-        if user_exists.exists():
+        confirmed_password = request.POST.get("confirm-password")
+        user_to_create = User.objects.filter( username = email )
+        if user_to_create.exists():
             messages.error(request , "Email already used by another user"  )
             return redirect("signup")
         if password != confirmed_password:
-            messages.error(request , "Passwords do not match Please user matched passwords")
+            messages.error(request , "Passwords do not match Please use matched passwords")
             return redirect("signup")
         try: 
             #Create a user      
@@ -115,7 +117,7 @@ def signup(request):
                 phone_number = phone
             )
             print(f"{author.name} with {author.phone_number} created")
-            messages.success(request,"Account successfully created. You will be redirected to the login page to login with your credentials ")
+            messages.success(request,"Account successfully created. login with your credentials ")
             return redirect("user_login")
         except Exception as e:
             messages.error(request , f"Error creating an account: {e}")
@@ -143,8 +145,13 @@ def user_login(request):
 @login_required(login_url = "user_login")
 def dashboard(request):
     user = Author.objects.get( user = request.user )
+    try:
+        associated_author = Author.objects.get()
+    except Exception as e:
+        associated_author = user
     return render(request , "blog/dashboard.html",{
-        "user": user
+        "user": user ,
+        "author": associated_author
     })
 
 
