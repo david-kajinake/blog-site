@@ -1,0 +1,88 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Account Settings | My Django Blog{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'blog/css/settings.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="settings-container">
+    <header class="settings-header">
+        <h1>Display & Language Settings</h1>
+        <p>Personalize how your dashboard looks and feels.</p>
+    </header>
+
+    <form action="#" method="POST" class="settings-form">
+        {% csrf_token %}
+
+        <section class="settings-section">
+            <h2 class="section-title">Appearance</h2>
+            
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="theme">Theme Mode</label>
+                    <span>Choose between a light or dark visual interface.</span>
+                </div>
+                <select name="theme" id="theme" class="setting-input">
+                    <option value="light">☀️ Light Mode</option>
+                    <option value="dark">🌙 Dark Mode</option>
+                </select>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="font_family">Font Family</label>
+                    <span>Select the typeface for your dashboard text.</span>
+                </div>
+                <select name="font_family" id="font_family" class="setting-input">
+                    <option value="sans-serif">Sans Serif (System Default)</option>
+                    <option value="serif">Serif (Classic)</option>
+                    <option value="monospace">Monospace (Code style)</option>
+                </select>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="font_size">Font Size</label>
+                    <span>Adjust the scale of the text for readability.</span>
+                </div>
+                <div class="range-wrapper">
+                    <select name="font_size" id="font_size" class="setting-input">
+                        <option value="small">Small</option>
+                        <option value="medium" selected>Medium (Standard)</option>
+                        <option value="large">Large</option>
+                        <option value="xlarge">Extra Large</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="settings-section">
+            <h2 class="section-title">Localization</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <label for="language">Language</label>
+                    <span>Select your preferred language for the interface.</span>
+                </div>
+                <select name="language" id="language" class="setting-input">
+                    <option value="en">English (US)</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                    <option value="de">German</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="settings-actions">
+            <button type="submit" class="save-btn">Save Changes</button>
+            <button type="reset" class="cancel-btn">Reset to Default</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block extra_js %}
+{{block.super}}
+<script type="module" src="{% static 'blog/js/settins.js' %}?v={{js_latest}}"></script>
+{% endblock %}

@@ -14,6 +14,7 @@ urlpatterns = [
     path("login/", views.user_login , name = "user_login"),
     path("logout/",views.user_logout , name = "user_logout") ,
     path("dashboard/" , views.dashboard , name = "dashboard"),
+    path("settings/",views.settings , name = "settings"),
     path("search/",views.search , name = "search") ,
     path("post/<int:post_id>/add_comment/" , views.add_comment , name = "add_comment"),
     path("post/<int:post_id>/" , views.post_list , name = "post_list"),

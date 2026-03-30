@@ -190,3 +190,8 @@ def add_comment(request , post_id):
         "post": post
     } )
         
+@login_required(login_url='user_login')
+def settings(request):
+    if request.method == "POST":
+        usersss = 1
+    return render(request , "blog/settings.html")
