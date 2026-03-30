@@ -11,12 +11,46 @@ posts = Post.objects.all()
 is_loggedin = False 
 
 # Create your views here.
+def user_is_authenticated(user):
+    if user.is_authenticated:
+        return[user,True]
+    else:
+        return [user,False] 
+
 
 def home(request):
-    posts = Post.objects.all()
-    return render(request , "blog/home.html",{
-        "posts": posts
-    })
+    # user = request.user
+    # posts = Post.objects.all()
+    # if user.is_authenticated:
+    #     return render(request,"blog/dashboard.html",{
+    #         "blogs": blogs , 
+    #         "user": user ,
+    #     })
+    # else:
+    #     return render(request , "blog/home.html",{
+    #         "posts": posts
+    #     })
+    blogs = Post.objects.all()
+    user = user_is_authenticated(request.user)[0]
+    session_authenticated = user_is_authenticated(request.user)[1]
+
+    if session_authenticated:
+        return render(request,"blog/dashboard.html",{
+            "blogs": blogs , 
+            "user": user
+        })
+    else:
+        return render(request,"blog/home.html",{
+            "blogs": blogs , 
+            "user": user
+        })
+    
+    
+
+
+
+
+
 def blogs(request):
     blogs = Post.objects.all()
     return render(request , "blog/blogs.html",{
