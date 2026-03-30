@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded",()=>{
-    console.log("Woking");
     const headerNavItems = document.querySelectorAll(".header-nav-item");
     //Route the header nav links 
     for( const navItem of headerNavItems ){

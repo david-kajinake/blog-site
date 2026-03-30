@@ -30,7 +30,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey( Author , on_delete = models.CASCADE , related_name = "posts" )
     post_id = models.CharField( max_length= 255 , blank= True )
-    date_posted = models.TimeField()
+    date_posted = models.TimeField(auto_now_add=True)
     def __str__(self):
         return self.title
     
@@ -38,7 +38,7 @@ class Post(models.Model):
         if not self.pk:
             current_time = get_time()
             self.post_id = current_time
-        super.save(*args , **kwargs)
+        super().save(*args , **kwargs)
 
 
 class Comment(models.Model):

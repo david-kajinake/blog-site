@@ -1,7 +1,7 @@
 {% extends 'blog/layout.html' %}
 {% load static %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'blog/layout.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'blog/css/layout.css' %}?v={{css_latest}}">
 {% endblock %}
 {% block title %}Home | My Django Blog{% endblock %}
 
@@ -21,6 +21,17 @@
         </div>
         
         <div class="blog-grid">
+            {% for post in  posts %}
+             <article class="blog-card" >
+                <div class="card-image" placeholder-img ></div>
+                <div class="card-content">
+                    <span class="category">
+                        <h3><a href="#">{{post.title}}</a></h3>
+                        <p class="excerpt">{{post.content}}</p>
+                    </span> 
+                </div>
+             </article>
+            {% endfor %}
             <article class="blog-card">
                 <div class="card-image placeholder-img"></div>
                 <div class="card-content">

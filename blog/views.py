@@ -13,14 +13,10 @@ is_loggedin = False
 # Create your views here.
 
 def home(request):
+    posts = Post.objects.all()
     return render(request , "blog/home.html",{
-        "posts": posts ,
-        "admin_name":"David" ,
-        "partner_name":"Michelle",
-        "loggedin":True ,
-        "items":["Apple","Mango","House"]
-                                              }
-                 )
+        "posts": posts
+    })
 def post_list(request , post_id ):
     post = get_object_or_404(Post , id = post_id)
     return render(request , "blog/post_list.html" , {
