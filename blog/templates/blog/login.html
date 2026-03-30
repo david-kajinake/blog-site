@@ -19,7 +19,7 @@
           </p>
         </div>
          
-        <form action="#" method="POST" class="auth-form">
+        <form action="{% url 'user_login' %}" method="POST" class="auth-form">
             {% csrf_token %}
             <div class="form-group">
                 <label for="email">Email Address</label>
