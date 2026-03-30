@@ -1,0 +1,81 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/css/my-blogs.css' %}?v={{css_latest}}">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+{% endblock %}
+
+{% block content %}
+<div class="blogs-container">
+    <header class="blogs-header">
+        <div class="header-text">
+            <h1>My Publications</h1>
+            <p>Manage, edit, and track the performance of your articles.</p>
+        </div>
+        <a href="" class="add-blog-btn">
+            <i class="ph ph-plus-circle"></i>
+            Create New Blog
+        </a>
+    </header>
+
+    <section class="blogs-stats">
+        <div class="stat-card">
+            <span class="stat-label">Total Posts</span>
+            <span class="stat-number">{{ user.blogs.count }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Total Reads</span>
+            <span class="stat-number">12.4k</span>
+        </div>
+    </section>
+
+    <div class="blogs-grid">
+        {% for blog in user.blogs.all %}
+        <article class="blog-card">
+            <div class="blog-image">
+                {% if blog.image %}
+                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                {% else %}
+                    <div class="image-placeholder">
+                        <i class="ph ph-image-square"></i>
+                    </div>
+                {% endif %}
+                <span class="status-badge {% if blog.is_published %}published{% else %}draft{% endif %}">
+                    {{ blog.is_published|yesno:"Published,Draft" }}
+                </span>
+            </div>
+            
+            <div class="blog-content">
+                <span class="blog-date">{{ blog.created_at|date:"M d, Y" }}</span>
+                <h3 class="blog-title">{{ blog.title }}</h3>
+                <p class="blog-excerpt">{{ blog.content|truncatewords:15 }}</p>
+                
+                <div class="blog-actions">
+                    <a href="{% url 'edit_blog' blog.slug %}" class="action-btn edit" title="Edit">
+                        <i class="ph ph-pencil-simple"></i>
+                    </a>
+                    <a href="{% url 'blog_detail' blog.slug %}" class="action-btn view" title="View">
+                        <i class="ph ph-eye"></i>
+                    </a>
+                    <button class="action-btn delete" title="Delete">
+                        <i class="ph ph-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty-state">
+            <i class="ph ph-note-blank"></i>
+            <h3>No blogs yet</h3>
+            <p>You haven't written any articles. Start sharing your thoughts today!</p>
+            <a href="" class="secondary-btn">Write your first post</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+{{block.super}}
+<script type="module" src="{% static 'blog/js/my-blogs.js' %}?v={{js_latest}}"></script>
+{% endblock %}

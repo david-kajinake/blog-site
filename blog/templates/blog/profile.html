@@ -1,0 +1,101 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/css/profile.css' %}?v={{css_latest}}">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <aside class="profile-sidebar">
+        <div class="profile-pic-container">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic">
+            <button class="edit-pic-btn"><i class="ph ph-camera"></i></button>
+        </div>
+        
+        <h2 class="display-name">{{ user.author.name|default:user.username }}</h2>
+        <p class="display-username">@{{ user.username }}</p>
+        
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-value">1.2k</span>
+                <span class="stat-label">Followers</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">850</span>
+                <span class="stat-label">Following</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">4.5k</span>
+                <span class="stat-label">Likes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">320</span>
+                <span class="stat-label">Liked</span>
+            </div>
+        </div>
+
+        <div class="bio-section">
+            <h3>Bio</h3>
+            <p>{{ user.profile.bio|default:"No bio yet." }}</p>
+        </div>
+        <div class="information-section">
+            <p><strong>Name:</strong> {{user.author.name}}</p>
+            <p><strong>Username:</strong> {{user.username }}</p>
+            <p><strong>Email:</strong> {{ user.author.email }}</p>
+            <p><strong>Phone Number:</strong> {{ user.author.phone_number }}</p>
+            
+        </div>
+    </aside>
+
+    <main class="profile-main">
+        <section class="settings-card">
+            <h2>Account Settings</h2>
+            <form method="POST" enctype="multipart/form-data" class="profile-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" name="full_name" id="full-name" value="{{ user.get_full_name }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" id="email" value="{{ user.email }}">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" name="phone" id="phone" value="{{ user.profile.phone }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" value="{{ user.username }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio-edit">Bio</label>
+                    <textarea name="bio" id="bio-edit" rows="3">{{ user.profile.bio }}</textarea>
+                </div>
+
+                <button type="submit" class="save-btn">Update Profile</button>
+            </form>
+        </section>
+
+        <section class="settings-card security-card">
+            <h2>Security</h2>
+            <p class="section-desc">Manage your password and account security.</p>
+            <div class="security-actions">
+                <a href="" class="secondary-btn" style="text-decoration: none;">Change Password</a>
+                <a href="" class="text-btn" style="text-decoration: none;">Reset via Email</a>
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock %}
+{% block extra_js %}
+{{block.super}}
+<script type="module" src="{% static 'blog/js/profile.js' %}v?={{js_latest}}"></script>
+{% endblock %}

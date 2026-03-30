@@ -189,6 +189,17 @@ def add_comment(request , post_id):
     return render( request , "blog/post_detail.html" , {
         "post": post
     } )
+
+@login_required(login_url='user_login')
+def my_blogs(request):
+    user = request.user
+    return render(request , "blog/my-blogs.html",{
+        "user": user
+    })
+
+@login_required(login_url='user_login')
+def profile(request):
+    return render(request,"blog/profile.html")
         
 @login_required(login_url='user_login')
 def settings(request):
