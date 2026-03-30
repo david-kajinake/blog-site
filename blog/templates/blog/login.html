@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Login | My Django Blog{% endblock %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'blog/css/login.css' %}?v={{css_lates}}">
+<link rel="stylesheet" href="{% static 'blog/css/login.css' %}?v={{css_latest}}">
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,11 @@
 
         <div class="auth-message">
           <p>
-          <strong>Login failed</strong>
+          <strong>
+            {% for message in messages %}
+             {{message}}
+            {% endfor %}
+          </strong>
           </p>
         </div>
          
@@ -35,7 +39,7 @@
         </form>
 
         <div class="auth-footer">
-            <p>Don't have an account? <a href="#">Create one here</a></p>
+            <p>Don't have an account? <a href="{% url 'signup' %}">Create one here</a></p>
         </div>
     </div>
 </div>

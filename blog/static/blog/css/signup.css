@@ -1,0 +1,147 @@
+/* =========================================
+   Signup Page Layout
+   ========================================= */
+
+/* Center the card on the page */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: calc(100vh - 200px); /* Adjusts based on header/footer height */
+}
+
+/* The white card container */
+.auth-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 550px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.auth-header p {
+    color: #7f8c8d;
+}
+
+/* =========================================
+   Form Elements
+   ========================================= */
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+/* Multi-column rows for First/Other name & Passwords */
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.half-width {
+    flex: 1;
+}
+
+.auth-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-size: 0.9rem;
+}
+
+.auth-form input:not([type="checkbox"]) {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+}
+
+/* =========================================
+   Checkbox & Button
+   ========================================= */
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start; /* Align with the first line of text */
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-top: 4px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-group label {
+    display: inline;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.auth-button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #0056b3;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.auth-footer a {
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* =========================================
+   Responsive Design
+   ========================================= */
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .auth-card {
+        padding: 25px;
+    }
+}
