@@ -9,6 +9,11 @@
 
 {% block content %}
 <div class="dashboard-wrapper">
+    <div class="message">
+        {% for message in messages %}
+         <h4>{{ message }}</h4>
+        {% endfor %}
+    </div>
     
     <section class="db-welcome">
         <div class="db-welcome-text">

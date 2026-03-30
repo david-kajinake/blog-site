@@ -27,7 +27,7 @@
             <a href="#">Blogs</a>
             <a href="#">About</a>
             
-            <form action="#" method="POST" class="logout-form">
+            <form action="{% url 'user_logout' %}" method="POST" class="logout-form">
                 {% csrf_token %}
                 <button type="submit" class="logout-link">Logout</button>
             </form>

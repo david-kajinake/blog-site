@@ -1,4 +1,4 @@
-from django.contrib.auth import login , authenticate 
+from django.contrib.auth import login , logout , authenticate 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -139,8 +139,26 @@ def user_login(request):
         else:
             messages.error(request,"Wrong username or password.")
             return redirect("user_login")
-        
     return render(request , "blog/login.html")
+
+@login_required(login_url= 'user_login')
+def user_logout(request):
+    if request.method == "POST":  
+        user = request.user
+        try:
+            logout(request)
+            messages.info(request,"Logged out successfully")
+            return redirect('home')
+        except Exception as e:
+            messages.info(request , f"Didn't logout , an error has occured, {e}")
+            return redirect("dashboard")
+    return HttpResponse("Can not logout from url input")
+
+
+    
+
+
+
 
 @login_required(login_url = "user_login")
 def dashboard(request):
