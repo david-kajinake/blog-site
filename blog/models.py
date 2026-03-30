@@ -8,7 +8,7 @@ from .context_processors import get_time #Generates an ID based on current time
 class Author(models.Model):
     user = models.OneToOneField( User , on_delete = models.CASCADE )
     name = models.CharField(max_length = 100)
-    email_address = models.EmailField()
+    email = models.EmailField()
     phone_number = models.CharField()
     date_joined = models.DateField( auto_now_add = True )
     author_id = models.CharField( max_length= 255 , blank = True )

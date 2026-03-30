@@ -6,16 +6,11 @@ from django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
 from . models import Post , Report , Comment  ,Author , About   
 
-posts = Post.objects.all()
-
-is_loggedin = False 
 
 # Create your views here.
 def user_is_authenticated(user):
-    if user.is_authenticated:
-        return[user,True]
-    else:
-        return [user,False] 
+    user_is_valid = user.is_authenticated
+    return [ user , user_is_valid] 
 
 
 def home(request):
@@ -31,8 +26,7 @@ def home(request):
     #         "posts": posts
     #     })
     blogs = Post.objects.all()
-    user = user_is_authenticated(request.user)[0]
-    session_authenticated = user_is_authenticated(request.user)[1]
+    user , session_authenticated = user_is_authenticated(request.user)[0] , user_is_authenticated(request.user)[1]
 
     if session_authenticated:
         return render(request,"blog/dashboard.html",{
@@ -117,7 +111,7 @@ def signup(request):
             author = Author.objects.create(
                 user = user ,
                 name = name ,
-                email_address = email , 
+                email = email , 
                 phone_number = phone
             )
             print(f"{author.name} with {author.phone_number} created")
