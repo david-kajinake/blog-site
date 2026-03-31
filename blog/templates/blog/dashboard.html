@@ -18,7 +18,7 @@
     <section class="db-welcome">
         <div class="db-welcome-text">
           <!--   <h1>Hello, {{ request.user.username|default:"Creator" }}!</h1> -->
-            <h1>Hello {{ user }} , {{ user_requesting.settings.language }}</h1>
+            <h1>Hello {{ user.author.name }}</h1>
             <p>Here's what's happening with your content today.</p>
         </div>
         <a href="#" class="db-create-btn">+ New Blog Post</a>

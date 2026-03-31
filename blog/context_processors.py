@@ -1,5 +1,5 @@
 import time 
-# from . views import user_is_authenticated
+# from . views import user_is_authenticated -> Imported down in the get_user_and_settings() function due to circular import error
 
 
 def get_time():

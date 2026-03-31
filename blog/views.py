@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render , redirect , get_object_or_404 
 from django.http import HttpResponse
-from . models import Post , Report , Comment  ,Author , About   
+from . models import Post , Report , Comment  ,Author , About , UserSettings
 
 
 # Create your views here.
@@ -14,17 +14,6 @@ def user_is_authenticated(user):
 
 
 def home(request):
-    # user = request.user
-    # posts = Post.objects.all()
-    # if user.is_authenticated:
-    #     return render(request,"blog/dashboard.html",{
-    #         "blogs": blogs , 
-    #         "user": user ,
-    #     })
-    # else:
-    #     return render(request , "blog/home.html",{
-    #         "posts": posts
-    #     })
     blogs = Post.objects.all()
     user , session_authenticated = user_is_authenticated(request.user)[0] , user_is_authenticated(request.user)[1]
 
@@ -110,11 +99,17 @@ def signup(request):
                 password = password
             )
             print(f"user for {user.username} created")
+            #Create an author profile as a user instance
             author = Author.objects.create(
                 user = user ,
                 name = name ,
                 email = email , 
                 phone_number = phone
+            )
+            #Initialize user settings
+            settings = UserSettings.objects.create(
+                user = user , 
+                #Other fields( language , theme , ... ) have default values
             )
             print(f"{author.name} with {author.phone_number} created")
             messages.success(request,"Account successfully created. login with your credentials ")
