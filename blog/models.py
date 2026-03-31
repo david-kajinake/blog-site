@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import time
-from .context_processors import get_time #Generates an ID based on current time
+from .context_processors import get_time #Generates a timestamp ID based on current time
 
 
 # Create your models here.
@@ -89,5 +89,31 @@ class About(models.Model):
     def save(self , *args , **kwargs):
         super().save( *args , **kwargs )
 
+class UserSettings(models.Model):
+    user = models.OneToOneField( User , on_delete=models.CASCADE , related_name="settings" )
+    LANGUAGE_CHOICE = [
+        ("english","english") ,
+        ("french","french") , 
+        ("swahili","swahili")
+    ]
+    THEME_CHOICE = [
+        ("light","light") , 
+        ("dark","dark")
+    ]
+    FONT_SIZE_CHOICE = [
+        ("small","small") , 
+        ("medium","medium") ,
+        ("large","large") ,
+        ("extra large","extra large") ,
+    ]
+    language = models.CharField(choices= LANGUAGE_CHOICE, default="english" , max_length=255)
+    theme_mode = models.CharField(choices=THEME_CHOICE , default="light" , max_length= 255)
+    font_size = models.CharField(choices=FONT_SIZE_CHOICE , default="medium", max_length= 255)
+    last_updated = models.DateField(auto_now_add= True)
 
+    def __str__(self):
+        return f"Settings for {self.user} {self.user.author.author_id}"
+    
+    def save(self , *args , **kwargs):
+        super().save(*args , **kwargs)
 
