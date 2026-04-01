@@ -10,7 +10,7 @@
     
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body data-pageid="{{ request.resolver_match.url_name }}" >
 
     <input type="checkbox" id="mobile-menu-toggle" class="menu-toggle-checkbox">
 
@@ -39,7 +39,7 @@
         <aside class="auth-sidebar">
             <nav class="sidebar-menu">
                 <p class="menu-label">Menu</p>
-                <a  href="#" class="sidebar-link active" data-tag="dashboard" >
+                <a  href="#" class="sidebar-link active" data-tag="home" >
                     <span class="icon">📊</span> Dashboard
                 </a>
                 <a href="#" class="sidebar-link" data-tag="my-blogs" >
@@ -65,6 +65,7 @@
 
     {% block extra_js %}
     <script type="module" src="{% static 'blog/js/base.js' %}?v={{js_latest}}"></script>
+    <script type="module" src="{% static 'blog/js/global.js' %}?V={{js_latest}}"></script>
     {% endblock %}
 </body>
 </html>

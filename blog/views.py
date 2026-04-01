@@ -142,7 +142,6 @@ def user_logout(request):
         user = request.user
         try:
             logout(request)
-            messages.info(request,"Logged out successfully")
             return redirect('home')
         except Exception as e:
             messages.info(request , f"Didn't logout , an error has occured, {e}")
@@ -178,7 +177,7 @@ def add_comment(request , post_id):
     if request.method == "POST":
         name = request.POST.get("name")
         content = request.POST.get("content")
-        #save to database
+        #save comment to database
         Comment.objects.create(post = post , name = name , content = content )
         return redirect("post_list" , post.id)
     return render( request , "blog/post_detail.html" , {
