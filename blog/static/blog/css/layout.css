@@ -1,6 +1,4 @@
-/* =========================================
-   Base & Reset
-   ========================================= */
+/* Base & Reset */
 * {
     margin: 0;
     padding: 0;
@@ -30,9 +28,7 @@ ul {
     list-style: none;
 }
 
-/* =========================================
-   Header & Navigation
-   ========================================= */
+/* Header & Navigation */
 .site-header {
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -73,9 +69,7 @@ ul {
     color: #007bff;
 }
 
-/* =========================================
-   Main Content Area
-   ========================================= */
+/* Main Content Area */
 .content-area {
     flex: 1; /* This pushes the footer to the bottom */
     width: 100%;
@@ -84,9 +78,7 @@ ul {
     padding: 3rem 2rem;
 }
 
-/* =========================================
-   Footer Area
-   ========================================= */
+/* Footer Area*/
 .site-footer {
     background-color: #2c3e50;
     color: #ecf0f1;
@@ -152,9 +144,7 @@ ul {
     font-size: 0.9rem;
 }
 
-/* =========================================
-   Responsive Design (Mobile Devices)
-   ========================================= */
+/*Responsive Design (Mobile Devices) */
 @media (max-width: 768px) {
     .main-nav {
         flex-direction: column;

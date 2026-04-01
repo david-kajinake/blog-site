@@ -2,6 +2,77 @@
    Settings Page Styles
    ========================================= */
 
+/* =========================================
+   DARK THEME OVERRIDES
+   ========================================= */
+
+/* Headers & Paragraphs */
+body.dark-theme .settings-header h1 {
+    color: #ffffff;
+}
+body.dark-theme{
+    background-color: #333333;
+    color: white;
+}
+
+body.dark-theme .settings-header p,
+body.dark-theme .info p {
+    color: #a0a0a0;
+}
+
+/* Section Containers */
+body.dark-theme .settings-section {
+    background: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .section-title {
+    color: #ffffff;
+    border-bottom: 1px solid #333333;
+}
+
+/* Setting Rows & Text */
+body.dark-theme .setting-item {
+    border-bottom: 1px solid #333333;
+}
+
+body.dark-theme .setting-info label {
+    color: #ffffff;
+}
+
+body.dark-theme .setting-info span {
+    color: #a0a0a0;
+}
+
+/* Inputs (Select Dropdowns) */
+body.dark-theme .setting-input {
+    background-color: #2d2d2d;
+    border: 1px solid #444444;
+    color: #ffffff;
+}
+
+body.dark-theme .setting-input:focus {
+    border-color: #007bff; /* Keeps the nice blue focus ring */
+    outline: none;
+}
+
+/* Secondary Button (Cancel/Reset) */
+body.dark-theme .cancel-btn {
+    color: #a0a0a0;
+    border-color: #444444;
+}
+
+body.dark-theme .cancel-btn:hover {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border-color: #555555;
+}
+
+
+
+
+
+/* DEFAULT SETTINGS IN LIGHT THEME */
 .settings-container {
     max-width: 800px;
     margin: 0 auto;

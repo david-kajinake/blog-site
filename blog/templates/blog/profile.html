@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+{{ user_preference|json_script:"user_settings_config" }}
 <div class="profile-container">
     <aside class="profile-sidebar">
         <div class="profile-pic-container">
@@ -98,4 +99,5 @@
 {% block extra_js %}
 {{block.super}}
 <script type="module" src="{% static 'blog/js/profile.js' %}v?={{js_latest}}"></script>
+<script type="module" src="{% static 'blog/js/global.js' %}?v={{json_script}}"></script>
 {% endblock %}

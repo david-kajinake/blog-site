@@ -1,3 +1,56 @@
+/* =========================================
+   DARK THEME OVERRIDES
+   ========================================= */
+
+/* Main Body Background */
+body.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Update Container Backgrounds */
+body.dark-theme .db-welcome,
+body.dark-theme .db-stat-card,
+body.dark-theme .db-recent-posts {
+    background: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* Update Headings and Text */
+body.dark-theme .db-welcome-text h1,
+body.dark-theme .db-stat-value {
+    color: #ffffff;
+}
+
+body.dark-theme .db-welcome-text p,
+body.dark-theme .db-stat-info h3,
+body.dark-theme .db-table th {
+    color: #a0a0a0; /* Lighter gray for readability on dark */
+}
+
+/* Update Icon Backgrounds */
+body.dark-theme .db-stat-icon {
+    background: #2d2d2d;
+}
+
+/* Table Borders */
+body.dark-theme .db-table th,
+body.dark-theme .db-table td {
+    border-bottom: 1px solid #333333;
+}
+
+/* Status Badges */
+body.dark-theme .draft {
+    background: #2d3436;
+    color: #b2bec3;
+}
+
+body.dark-theme .published {
+    background: rgba(0, 184, 148, 0.2);
+    color: #00b894;
+}
+
+
 /* Container Spacing */
 .dashboard-wrapper {
     max-width: 1100px;

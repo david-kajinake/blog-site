@@ -115,7 +115,8 @@ def signup(request):
             messages.success(request,"Account successfully created. login with your credentials ")
             return redirect("user_login")
         except Exception as e:
-            messages.error(request , f"Error creating an account: {e}")
+            messages.error(request , f"Error creating an account")
+            return redirect("signup")
 
     return render(request , "blog/signup.html")
 
@@ -128,7 +129,6 @@ def user_login(request):
         #Authenticate user
         user = authenticate(request , username = email , password = password)
         if user is not None:
-            is_loggedin = True
             login(request, user)
             return redirect("dashboard")
         else:

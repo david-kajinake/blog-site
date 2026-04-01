@@ -8,6 +8,68 @@
     --blog-bg: #ffffff;
 }
 
+
+
+
+
+/* =========================================
+   FORCE DARK THEME OVERRIDES
+   ========================================= */
+
+body.dark-theme {
+    background-color: #121212 !important;
+}
+
+/* This targets the white area behind your "My Publications" header */
+body.dark-theme .app-container,
+body.dark-theme .auth-main-content,
+body.dark-theme .blogs-container {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+/* Header Fixes */
+body.dark-theme .header-text h1 {
+    color: #ffffff !important;
+}
+
+body.dark-theme .header-text p {
+    color: #a0a0a0 !important;
+}
+
+/* Stats Cards Fixes */
+body.dark-theme .stat-card {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333333 !important;
+}
+
+body.dark-theme .stat-number {
+    color: #ffffff !important;
+}
+
+body.dark-theme .stat-label {
+    color: #a0a0a0 !important;
+}
+
+/* Empty State (The "No blogs yet" section) */
+body.dark-theme .empty-state h3 {
+    color: #ffffff !important;
+}
+
+body.dark-theme .empty-state p {
+    color: #a0a0a0 !important;
+}
+
+/* Border Fix */
+body.dark-theme .blogs-header {
+    border-bottom: 1px solid #333333 !important;
+}
+
+
+
+
+
+
 .blogs-container {
     max-width: 1200px;
     margin: 40px auto;
@@ -163,3 +225,5 @@
     .blogs-header { flex-direction: column; align-items: flex-start; gap: 20px; }
     .add-blog-btn { width: 100%; justify-content: center; }
 }
+
+

@@ -1,5 +1,5 @@
 import time 
-# from . views import user_is_authenticated -> Imported down in the get_user_and_settings() function due to circular import error
+# from . views import user_is_authenticated -> Imported down in the get_user_and_settings() function to circular import error with models.py
 
 
 def get_time():
@@ -31,6 +31,7 @@ def get_user_and_settings(request):
             }
         except Exception as e:
             user_settings = {
+            #Default configurations
             "user_language": "english" ,
             "user_font_size": "medium" ,
             "user_theme_mode": "light" ,
@@ -43,5 +44,5 @@ def get_user_and_settings(request):
             "user_theme_mode":"light"
         }
 
-    return user_settings
+    return{ "user_preference": user_settings }
     

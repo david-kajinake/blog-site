@@ -9,6 +9,89 @@
     --profile-danger: #ef4444;
 }
 
+
+
+
+
+/* =========================================
+   DARK THEME OVERRIDES (Profile Page)
+   ========================================= */
+
+/* 1. Override Core Variables */
+body.dark-theme {
+    --profile-bg: #121212 !important;      /* Main background */
+    --profile-card: #1a1a1a !important;    /* Card background */
+    --profile-text: #ffffff !important;    /* Primary text */
+    --profile-muted: #a0a0a0 !important;   /* Secondary text */
+    --profile-border: #333333 !important;  /* Borders */
+}
+
+/* 2. Force Backgrounds (To prevent "ghosting" from parent containers) */
+body.dark-theme .app-container,
+body.dark-theme .auth-main-content,
+body.dark-theme .profile-container {
+    background-color: var(--profile-bg) !important;
+}
+
+/* 3. Text & Header Overrides */
+body.dark-theme .display-name,
+body.dark-theme .stat-value,
+body.dark-theme .settings-card h2 {
+    color: var(--profile-text) !important;
+}
+
+body.dark-theme .display-username,
+body.dark-theme .stat-label,
+body.dark-theme .bio-section h3,
+body.dark-theme .section-desc {
+    color: var(--profile-muted) !important;
+}
+
+body.dark-theme .bio-section p,
+body.dark-theme .information-section p,
+body.dark-theme .information-section p strong {
+    color: #cccccc !important;
+}
+
+/* 4. Form Controls Override */
+body.dark-theme label {
+    color: #cccccc !important;
+}
+
+body.dark-theme input, 
+body.dark-theme textarea {
+    background-color: #2d2d2d !important;
+    border-color: var(--profile-border) !important;
+    color: var(--profile-text) !important;
+}
+
+body.dark-theme input:focus, 
+body.dark-theme textarea:focus {
+    background-color: #333333 !important;
+    border-color: var(--profile-primary) !important;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2) !important;
+}
+
+/* 5. Button Overrides */
+body.dark-theme .secondary-btn {
+    background: #2d2d2d !important;
+    color: var(--profile-text) !important;
+    border-color: var(--profile-border) !important;
+}
+
+body.dark-theme .secondary-btn:hover {
+    background: #3a3a3a !important;
+}
+
+/* Profile Picture Border Override */
+body.dark-theme .profile-pic {
+    border-color: var(--profile-border) !important;
+}
+
+
+
+
+
 /* Container Layout */
 .profile-container {
     max-width: 1100px;
