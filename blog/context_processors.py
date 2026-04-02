@@ -46,6 +46,20 @@ def get_user_and_settings(request):
 
     return{ "user_preference": user_settings }
 
+def supported_theme_mode(request):
+    themes = {
+        "🌞Light Mode":"light" , 
+        "🌙Dark mode":"dark"
+    }
+    return { "supported_theme_mode":themes }
+
+
+def supported_font_styles(request):
+    fonts = {
+        "S"
+    }
+
+
 def supported_languages(request):
     languages = {
         "English":"english" , 

@@ -101,10 +101,11 @@ class UserSettings(models.Model):
         ("dark","dark")
     ]
     FONT_SIZE_CHOICE = [
+        ("smaller","smaller") ,
         ("small","small") , 
         ("medium","medium") ,
         ("large","large") ,
-        ("extra large","extra large") ,
+        ("larger","larger") ,
     ]
     language = models.CharField(choices= LANGUAGE_CHOICE, default="english" , max_length=255)
     theme_mode = models.CharField(choices=THEME_CHOICE , default="light" , max_length= 255)
