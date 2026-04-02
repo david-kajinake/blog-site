@@ -93,7 +93,7 @@ class UserSettings(models.Model):
     user = models.OneToOneField( User , on_delete=models.CASCADE , related_name="settings" )
     LANGUAGE_CHOICE = [
         ("english","english") ,
-        ("french","french") , 
+        ("francais","francais") , 
         ("swahili","swahili")
     ]
     THEME_CHOICE = [

@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-
+                             
 {% block title %}Account Settings | My Django Blog{% endblock %}
 
 {% block extra_css %}
@@ -9,6 +9,7 @@
 
 {% block content %}
 {{ user_preference|json_script:"user_settings_config" }}
+{{ supported_languages|json_script:"supported_languages" }}
 <div class="settings-container">
     <header class="settings-header">
         <h1>Display & Language Settings</h1>
@@ -17,13 +18,11 @@
 
     <form action="#" method="POST" class="settings-form">
         {% csrf_token %}
-
         <section class="settings-section">
             <h2 class="section-title">Appearance</h2>
             <div class="info">
                 <p>Language: {{ user_preference.user_language }}</p>
             </div>
-            
             <div class="setting-item">
                 <div class="setting-info">
                     <label for="theme">Theme Mode</label>
@@ -71,10 +70,11 @@
                     <span>Select your preferred language for the interface.</span>
                 </div>
                 <select name="language" id="language" class="setting-input">
-                    <option value="en">English (US)</option>
+                 <!--<option value="en">English (US)</option>
                     <option value="fr">French</option>
                     <option value="es">Spanish</option>
                     <option value="de">German</option>
+                    -->
                 </select>
             </div>
         </section>

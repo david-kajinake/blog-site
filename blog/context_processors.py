@@ -45,4 +45,11 @@ def get_user_and_settings(request):
         }
 
     return{ "user_preference": user_settings }
-    
+
+def supported_languages(request):
+    languages = {
+        "English":"english" , 
+        "Swahili":"swahili" , 
+        "Francais":"francais",
+    }  
+    return {"supported_languages":languages}

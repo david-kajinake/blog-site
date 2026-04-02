@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'blog.context_processors.css_js_latest',
                 'blog.context_processors.get_user_and_settings',
+                'blog.context_processors.supported_languages' , 
             ],
         },
     },
