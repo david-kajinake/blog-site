@@ -25,9 +25,11 @@ def get_user_and_settings(request):
     if session_authenticated: 
         try:   
             user_settings = {
-            "user_language": user.settings.language,
-            "user_font_size": user.settings.font_size,
-            "user_theme_mode": user.settings.theme_mode, 
+            "user_language": user.settings.language ,
+            "user_font_family": user.settings.font_family ,
+            "user_font_size": user.settings.font_size ,
+            "user_theme_mode": user.settings.theme_mode , 
+            "user_settings_status": "As Prefered"
             }
         except Exception as e:
             user_settings = {
@@ -35,13 +37,18 @@ def get_user_and_settings(request):
             "user_language": "english" ,
             "user_font_size": "medium" ,
             "user_theme_mode": "light" ,
+            "user_font_family": "sans-serif",  
+            "user_settings_status":f"Exception: {e}"          
             }
 
     else:
+        #For unauthenticated users( return default settings )
         user_settings = {
             "user_laguage":"english" , 
             "user_font_size":"medium" , 
-            "user_theme_mode":"light"
+            "user_theme_mode":"light" , 
+            "user_settings_status": "Defaults for Unauthenticated",
+
         }
 
     return{ "user_preference": user_settings }
@@ -49,15 +56,45 @@ def get_user_and_settings(request):
 def supported_theme_mode(request):
     themes = {
         "🌞Light Mode":"light" , 
-        "🌙Dark mode":"dark"
+        "🌙Dark mode":"dark" ,
     }
     return { "supported_theme_mode":themes }
 
 
-def supported_font_styles(request):
+def supported_font_families(request):
     fonts = {
-        "S"
+        "sans-serif":"sans-serif" , 
+        "Courier New":"Courier New",
+        "Courier":"Courier",
+        "monospace":"monospace",
+        "Franklin Gothic Medium":"Franklin Gothic Medium",
+        "Arial Narrow":"Arial Narrow",
+        "Arial":"Arial",
+        "Gill Sans":"Gill Sans",
+        "Gill Sans MT":"Gill Sans MT",
+        "Calibri":"Calibri",
+        "Trebuchet MS":"Trebuchet MS",
+        "Segoe UI":"Trebuchet MS",
+        "Tahoma":"Trebuchet MS",
+        "Geneva":"Trebuchet MS",
+        "Verdana":"Trebuchet MS",
+        "Helvetica":"Trebuchet MS",
+        "Impact":"Impact",
+        "Haettenschweiler":"Haettenschweiler",
+        "Arial Narrow Bold":"Haettenschweiler",
     }
+    return {"supported_font_families":fonts}
+
+
+def supported_font_sizes(request):
+    font_sizes = {
+        "Smaller":"small",
+        "Small":"small",
+        "Medium":"meduim",
+        "Large":"large" ,
+        "Larger":"larger"
+    }
+    return{ "supported_font_sizes":font_sizes }
 
 
 def supported_languages(request):

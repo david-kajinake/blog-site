@@ -1,9 +1,10 @@
+import json
 from django.contrib.auth import login , logout , authenticate 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import render , redirect , get_object_or_404 
-from django.http import HttpResponse
+from django.http import HttpResponse , JsonResponse
 from . models import Post , Report , Comment  ,Author , About , UserSettings
 
 
@@ -75,6 +76,7 @@ def about_page(request):
 
 def pricing(request):
     return render( request, "blog/pricing.html" )
+
 
 def signup(request):
     if request.method == "POST":
@@ -197,6 +199,31 @@ def profile(request):
         
 @login_required(login_url='user_login')
 def settings(request):
-    if request.method == "POST":
-        usersss = 1
-    return render(request , "blog/settings.html")
+    user , session_authenticated = user_is_authenticated(request.user)[0] , user_is_authenticated(request.user)[1]
+    settings = UserSettings.objects.get(user = user )
+    if session_authenticated:
+        if request.method == "POST":
+            try:
+                data = json.loads(request.body)
+                prefered_theme = data.get( "prefered_theme" )
+                prefered_font_family = data.get("prefered_font_family")
+                prefered_font_size = data.get("prefered_font_size")
+                prefered_language = data.get("prefered_language")
+                settings.theme_mode = prefered_theme
+                settings.font_family = prefered_font_family
+                settings.font_size = prefered_font_size
+                settings.language = prefered_language
+                settings.save()
+                return JsonResponse({"status: ok"})
+            except Exception as e:
+                print(f"Error: {e}")
+                return JsonResponse({"status":"error","message": str(e)},status = 400)
+        return render(request,"blog/settings.html")
+    return render(request , "blog/home.html")
+
+
+@login_required(login_url='user_login')
+def applySettings(request):
+
+    return render(request , "blog/home.html")
+

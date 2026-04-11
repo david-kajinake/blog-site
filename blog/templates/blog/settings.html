@@ -8,15 +8,20 @@
 {% endblock %}
 
 {% block content %}
+<!--LOAD SETTINGS-->
 {{ user_preference|json_script:"user_settings_config" }}
 {{ supported_languages|json_script:"supported_languages" }}
+{{ supported_font_families|json_script:"supported_fonts" }}
+{{ supported_theme_mode|json_script:"supported_themes" }}
+{{ supported_font_sizes|json_script:"supported_font_sizes" }}
+
 <div class="settings-container">
     <header class="settings-header">
         <h1>Display & Language Settings</h1>
         <p>Personalize how your dashboard looks and feels.</p>
     </header>
 
-    <form action="#" method="POST" class="settings-form">
+    <form action="#" method="POST" class="settings-form" id="settings-form" >
         {% csrf_token %}
         <section class="settings-section">
             <h2 class="section-title">Appearance</h2>
@@ -29,34 +34,28 @@
                     <span>Choose between a light or dark visual interface.</span>
                 </div>
                 <select name="theme" id="theme" class="setting-input">
-                    <option value="light">☀️ Light Mode</option>
-                    <option value="dark">🌙 Dark Mode</option>
+                    <!--Options appended by javascript-->
                 </select>
             </div>
 
             <div class="setting-item">
                 <div class="setting-info">
-                    <label for="font_family">Font Family</label>
+                    <label for="font-family">Font Family</label>
                     <span>Select the typeface for your dashboard text.</span>
                 </div>
-                <select name="font_family" id="font_family" class="setting-input">
-                    <option value="sans-serif">Sans Serif (System Default)</option>
-                    <option value="serif">Serif (Classic)</option>
-                    <option value="monospace">Monospace (Code style)</option>
+                <select name="font-family" id="font-family" class="setting-input">
+                    <!-- Options are appended by javascript -->
                 </select>
             </div>
 
             <div class="setting-item">
                 <div class="setting-info">
-                    <label for="font_size">Font Size</label>
+                    <label for="font-size">Font Size</label>
                     <span>Adjust the scale of the text for readability.</span>
                 </div>
                 <div class="range-wrapper">
-                    <select name="font_size" id="font_size" class="setting-input">
-                        <option value="small">Small</option>
-                        <option value="medium" selected>Medium (Standard)</option>
-                        <option value="large">Large</option>
-                        <option value="xlarge">Extra Large</option>
+                    <select name="font-size" id="font-size" class="setting-input">
+                        <!--Options appended by javascript-->
                     </select>
                 </div>
             </div>
@@ -70,18 +69,14 @@
                     <span>Select your preferred language for the interface.</span>
                 </div>
                 <select name="language" id="language" class="setting-input">
-                 <!--<option value="en">English (US)</option>
-                    <option value="fr">French</option>
-                    <option value="es">Spanish</option>
-                    <option value="de">German</option>
-                    -->
+                    <!-- Options are appended by javascript -->
                 </select>
             </div>
         </section>
 
         <div class="settings-actions">
             <button type="submit" class="save-btn">Save Changes</button>
-            <button type="reset" class="cancel-btn">Reset to Default</button>
+            <button type="submit" class="cancel-btn">Reset to Default</button>
         </div>
     </form>
 </div>

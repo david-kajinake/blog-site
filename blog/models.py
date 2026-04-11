@@ -107,8 +107,31 @@ class UserSettings(models.Model):
         ("large","large") ,
         ("larger","larger") ,
     ]
+    FONT_FAMILY_CHOICE = [
+        ("sans-serif","sans-serif") , 
+        ("Courier New","Courier New") ,
+        ("Courier","Courier"),
+        ("monospace","monospace"),
+        ("Franklin Gothic Medium","Franklin Gothic Medium"),
+        ("Arial Narrow","Arial Narrow"),
+        ("Arial","Arial") ,
+        ("Gill Sans","Gill Sans") ,
+        ("Gill Sans MT","Gill Sans MT"),
+        ("Calibri","Calibri"),
+        ("Trebuchet MS","Trebuchet MS"),
+        ("Segoe UI","Segoe UI"),
+        ("Tahoma","Tahoma"),
+        ("Geneva","Geneva"),
+        ("Verdana","Verdana"),
+        ("Helvetica","Helvetica"),
+        ("Impact","Impact"),
+        ("Haettenschweiler","Haettenschweiler"),
+        ("Arial Narrow Bold","Arial Narrow Bold")
+    ]
+
     language = models.CharField(choices= LANGUAGE_CHOICE, default="english" , max_length=255)
     theme_mode = models.CharField(choices=THEME_CHOICE , default="light" , max_length= 255)
+    font_family = models.CharField( choices=FONT_FAMILY_CHOICE , default="sans-serif" , max_length= 255 )
     font_size = models.CharField(choices=FONT_SIZE_CHOICE , default="medium", max_length= 255)
     last_updated = models.DateField(auto_now_add= True)
 
