@@ -22,7 +22,7 @@
             <h1>Hello {{ user.author.name }}</h1>
             <p>Here's what's happening with your content today.</p>
         </div>
-        <a href="#" class="db-create-btn">+ New Blog Post</a>
+        <a href="#" id="openModalBtn" class="db-create-btn">+ New Blog Post</a>
     </section>
 
     <section class="db-stats-grid">
@@ -81,6 +81,41 @@
             </table>
         </div>
     </section>
+
+
+
+    <div id="createBlogModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Create New Blog Post</h2>
+            <button id="closeModalBtn" class="close-btn">&times;</button>
+        </div>
+        
+        <form action="#" method="POST" enctype="multipart/form-data" class="blog-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="blog-title">Blog Title</label>
+                <input type="text" id="blog-title" name="title" required placeholder="Enter an engaging title...">
+            </div>
+            
+            <div class="form-group">
+                <label for="blog-image">Cover Image</label>
+                <input type="file" id="blog-image" name="image" accept="image/*">
+            </div>
+            
+            <div class="form-group">
+                <label for="blog-content">Content</label>
+                <textarea id="blog-content" name="content" rows="6" required placeholder="Write your amazing content here..."></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button type="button" id="cancelModalBtn" class="secondary-btn">Cancel</button>
+                <button type="submit" class="db-create-btn">Publish Post</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 </div>
 {% endblock %}

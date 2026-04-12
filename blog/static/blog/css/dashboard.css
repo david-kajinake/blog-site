@@ -189,3 +189,90 @@ body.dark-theme .published {
         gap: 1rem;
     }
 }
+
+
+
+
+/* =========================================
+   MODAL STYLES
+   ========================================= */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add this class via JS to show the modal */
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* =========================================
+   MODAL DARK THEME OVERRIDES
+   ========================================= */
+body.dark-theme .modal-content {
+    background-color: #1a1a1a;
+    border: 1px solid #333333;
+}
+
+body.dark-theme .modal-header {
+    border-bottom-color: #333333;
+}
+
+body.dark-theme .modal-header h2 {
+    color: #ffffff;
+}
+
+body.dark-theme .close-btn {
+    color: #a0a0a0;
+}
+
+body.dark-theme .close-btn:hover {
+    color: #ffffff;
+}
