@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const settingsForm = document.getElementById("settings-form");
     settingsForm.addEventListener("submit", async (e)=>{
         e.preventDefault();
-        const csrfToken = document.querySelector("input[name=csrfmiddlewaretoken]").value;
+        const csrfToken = settingsForm.querySelector("input[name=csrfmiddlewaretoken]").value;
         const settingsUrl = `${window.origin}/settings/`;
         const settingsdData = {
             "prefered_theme": themeSelect.value , //themeSelect is a select tag

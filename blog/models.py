@@ -10,6 +10,7 @@ class Author(models.Model):
     name = models.CharField(max_length = 100)
     email = models.EmailField()
     phone_number = models.CharField()
+    image = models.ImageField( blank= True )
     date_joined = models.DateField( auto_now_add = True )
     author_id = models.CharField( max_length= 255 , blank = True )
     def __str__(self):
@@ -30,6 +31,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey( Author , on_delete = models.CASCADE , related_name = "posts" )
     post_id = models.CharField( max_length= 255 , blank= True )
+    image = models.ImageField( blank= True )
     date_posted = models.DateTimeField(auto_now_add=True , blank = True )
     def __str__(self):
         return self.title

@@ -168,6 +168,10 @@ def dashboard(request):
         "author": associated_author
     })
 
+@login_required( login_url= 'user_login' )
+def create_new_blog( request):
+    return HttpResponse("Form successfully received by the backend")
+
 
 
 

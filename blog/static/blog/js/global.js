@@ -1,6 +1,11 @@
-/* GLOBAL CONFIGURATIONS */
+/* GLOBAL CONFIGURATIONS AND GLOBAL FUNCTIONS */
 
 document.addEventListener("DOMContentLoaded",(e)=>{
+    
+
+
+
+
     //Get html elements
     let body = document.querySelector("body");
 
