@@ -177,9 +177,11 @@ def create_new_blog( request):
             try:
                 post_title = request.POST.get("title")
                 post_content = request.POST.get("content")
+                post_image = request.FILES.get("image")
                 post = Post.objects.create(
                     title = post_title , 
                     content = post_content , 
+                    image = post_image , 
                     author = user.author ,
                 )
                 return JsonResponse({"result":"created successfully"}, status = 201 )
