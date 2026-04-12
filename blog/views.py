@@ -170,7 +170,25 @@ def dashboard(request):
 
 @login_required( login_url= 'user_login' )
 def create_new_blog( request):
-    return HttpResponse("Form successfully received by the backend")
+    user , session_is_authenticated = user_is_authenticated(request.user)[0] , user_is_authenticated(request.user)[1]
+    user = user
+    if session_is_authenticated:
+        if request.method == "POST":
+            try:
+                post_title = request.POST.get("title")
+                post_content = request.POST.get("content")
+                post = Post.objects.create(
+                    title = post_title , 
+                    content = post_content , 
+                    author = user.author ,
+                )
+                return JsonResponse({"result":"created successfully"}, status = 201 )
+            except Exception as e:
+                return JsonResponse({"error":f"error occured: {e} "} , status = 400 )
+
+        return redirect("home")   
+    return render(request , "blog/home.html")
+
 
 
 

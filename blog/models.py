@@ -6,7 +6,7 @@ from .context_processors import get_time #Generates a timestamp ID based on curr
 
 # Create your models here.
 class Author(models.Model):
-    user = models.OneToOneField( User , on_delete = models.CASCADE )
+    user = models.OneToOneField( User , on_delete = models.CASCADE , related_name="author" )
     name = models.CharField(max_length = 100)
     email = models.EmailField()
     phone_number = models.CharField()

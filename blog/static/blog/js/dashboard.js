@@ -45,13 +45,14 @@ const openBtn = document.getElementById('openModalBtn');
 
         //const blogData = JSON.stringify( blogInfo );
         const formData = new FormData( blogForm )
+        console.log( formData );
         const response = await fetch( blogSubmissionUrl ,{ 
             method:"POST" , 
             headers:{ "X-CSRFToken": csrfToken.value } , 
             body: formData
          } );
          if (response.status){
-            console.log(response.status);
+            console.log(response);
          } else{
             console.error( response );
          }
