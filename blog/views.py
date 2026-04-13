@@ -44,10 +44,9 @@ def blogs(request):
 
 
 def post_list(request , post_id ):
-    post = get_object_or_404(Post , id = post_id)
+    post = get_object_or_404(Post , post_id = post_id)
     return render(request , "blog/post_list.html" , {
         "post": post ,
-        "post_id": post_id
     })
 
 def add_report(request , post_id):
@@ -213,8 +212,12 @@ def add_comment(request , post_id):
 @login_required(login_url='user_login')
 def my_blogs(request):
     user = request.user
+    author = Author.objects.get( user = user )
+    total_blogs = author.posts.count()
     return render(request , "blog/my-blogs.html",{
-        "user": user
+        "user": user , 
+        "author": author ,
+        "total_posts": total_blogs ,
     })
 
 @login_required(login_url='user_login')

@@ -23,7 +23,7 @@
     <section class="blogs-stats">
         <div class="stat-card">
             <span class="stat-label">Total Posts</span>
-            <span class="stat-number">{{ user.blogs.count }}</span>
+            <span class="stat-number">{{ total_posts }}</span>
         </div>
         <div class="stat-card">
             <span class="stat-label">Total Reads</span>
@@ -32,8 +32,8 @@
     </section>
 
     <div class="blogs-grid">
-        {% for blog in user.blogs.all %}
-        <article class="blog-card">
+        {% for blog in author.posts.all %}
+        <article class="blog-card" id="{{blog.post_id}}">
             <div class="blog-image">
                 {% if blog.image %}
                     <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
@@ -53,10 +53,10 @@
                 <p class="blog-excerpt">{{ blog.content|truncatewords:15 }}</p>
                 
                 <div class="blog-actions">
-                    <a href="{% url 'edit_blog' blog.slug %}" class="action-btn edit" title="Edit">
+                    <a href="" class="action-btn edit" title="Edit">
                         <i class="ph ph-pencil-simple"></i>
                     </a>
-                    <a href="{% url 'blog_detail' blog.slug %}" class="action-btn view" title="View">
+                    <a href="" class="action-btn view" title="View">
                         <i class="ph ph-eye"></i>
                     </a>
                     <button class="action-btn delete" title="Delete">
