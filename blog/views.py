@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.shortcuts import render , redirect , get_object_or_404 
 from django.http import HttpResponse , JsonResponse
 from . models import Post , Report , Comment  ,Author , About , UserSettings
+from services.authentication import authentication
 
 
 # Create your views here.
@@ -128,7 +129,8 @@ def user_login(request):
         password = request.POST.get("password")
 
         #Authenticate user
-        user = authenticate(request , username = email , password = password)
+        user = authentication.authenticate_user( request , email , password )
+        
         if user is not None:
             login(request, user)
             return redirect("dashboard")
