@@ -53,7 +53,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'blog_site.urls'
 
-blog_context_processors_shortcut = "blog.context_processors"
+blog_context_processors_path = "blog.context_processors"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -65,12 +65,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                f'{blog_context_processors_shortcut}.css_js_latest',
-                f'{blog_context_processors_shortcut}.get_user_and_settings',
-                f'{blog_context_processors_shortcut}.supported_languages' , 
-                f'{blog_context_processors_shortcut}.supported_font_families',
-                f'{blog_context_processors_shortcut}.supported_theme_mode',
-                f'{blog_context_processors_shortcut}.supported_font_sizes',
+                f'{blog_context_processors_path}.css_js_latest',
+                f'{blog_context_processors_path}.get_user_and_settings',
+                f'{blog_context_processors_path}.supported_languages' , 
+                f'{blog_context_processors_path}.supported_font_families',
+                f'{blog_context_processors_path}.supported_theme_mode',
+                f'{blog_context_processors_path}.supported_font_sizes',
             ],
         },
     },

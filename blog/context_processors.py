@@ -88,7 +88,7 @@ def supported_font_families(request):
 
 def supported_font_sizes(request):
     font_sizes = {
-        "Smaller":"small",
+        "Smaller":"smaller",
         "Small":"small",
         "Medium":"meduim",
         "Large":"large" ,
