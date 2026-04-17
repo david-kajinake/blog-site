@@ -1,43 +1,110 @@
 {% extends "blog/base.html" %}
+{% load static %}
 
 {% block title %}
-Post|| {{post}}
+    {{ post.title|default:post }} | My Django Blog
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/css/post-detail.css' %}?v={{css_latest}}">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
 {% endblock %}
 
 {% block content %}
-<br>
-<br>
-  <div>
-   <u> <strong>{{post}}</strong> </u>
-    <br>
-    {{post.content}}
-  </div>
-  <br>
-  <br>
-  <div>
-    <p>Comments</p>
-    <details>
-    {% for comment in post.comments.all %}
-  <summary> <strong>{{ comment.name }}</strong> </summary>  
-  {{ comment.content }}
-    {% endfor %}
-    </details>
-  </div>
-  <br>
-  <br>
-  <br>
-  <div>
-  People who reportd this post: 
-  <ul>
-    {% for report in post.reports.all %}
-    <li>
-    <details>
-      <summary> <strong>{{ report.reporter }}</strong> </summary>  
-      {{ report.content }}
-      {{ report.date_reported }}
-    {% endfor %}
-    </details>
-    </li>
-  </ul>
-  </div>
+<main class="article-container">
+    <article class="post-article">
+        <header class="article-header">
+            <h1 class="article-title">{{ post.title|default:post }}</h1>
+            
+            <div class="article-meta">
+                <div class="author-info">
+                    <div class="author-avatar">
+                        <i class="ph ph-user"></i>
+                    </div>
+                    <div class="author-details">
+                        <span class="author-name">{{ post.author.name|default:"Author" }}</span>
+                        <span class="post-date">Published recently</span>
+                    </div>
+                </div>
+            </div>
+
+            {% if post.image %}
+            <div class="article-cover">
+                <img src="{{ post.image.url }}" alt="Cover for {{ post.title }}">
+            </div>
+            {% endif %}
+        </header>
+
+        <div class="article-body">
+            {{ post.content|linebreaks }}
+        </div>
+        
+        <div class="article-actions">
+            <button class="engagement-btn"><i class="ph ph-heart"></i> Like</button>
+            <button class="engagement-btn"><i class="ph ph-share-network"></i> Share</button>
+        </div>
+    </article>
+
+    <section class="engagement-section">
+        <div class="section-header">
+            <h2><i class="ph ph-chats-circle"></i> Comments ({{ post.comments.count }})</h2>
+        </div>
+        
+        <div class="comments-list">
+            {% for comment in post.comments.all %}
+            <div class="comment-card">
+                <div class="comment-avatar"><i class="ph ph-user"></i></div>
+                <div class="comment-content">
+                    <h4 class="comment-author">{{ comment.name }}</h4>
+                    <p class="comment-text">{{ comment.content }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p class="empty-state-text">No comments yet. Be the first to share your thoughts!</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% if post.reports.exists %}
+    <section class="admin-section">
+        <div class="section-header danger">
+            <h2><i class="ph ph-warning-circle"></i> Reports</h2>
+        </div>
+        <div class="reports-list">
+            {% for report in post.reports.all %}
+            <details class="report-accordion">
+                <summary>
+                    <strong>{{ report.reporter }}</strong> 
+                    <span class="report-date">{{ report.date_reported|date:"M d, Y" }}</span>
+                </summary>
+                <div class="report-details">
+                    <p>{{ report.content }}</p>
+                </div>
+            </details>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="related-posts-section">
+        <div class="section-header">
+            <h2><i class="ph ph-books"></i> More from this author</h2>
+        </div>
+        <div class="related-grid">
+            {% for user_post in current_view_post_excluded %}
+            <a href="#" class="related-card">
+                <h3>{{ user_post.title|default:user_post }}</h3>
+                <span class="read-more">Read article <i class="ph ph-arrow-right"></i></span>
+            </a>
+            {% empty %}
+            <p class="empty-state-text">No other posts available.</p>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script type="module" src="{% static 'blog/js/global.js' %}?v={{js_latest}}"></script>
 {% endblock %}

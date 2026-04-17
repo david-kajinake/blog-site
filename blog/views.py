@@ -130,7 +130,7 @@ def user_login(request):
 
         #Authenticate user
         user = authentication.authenticate_user( request , email , password )
-        
+
         if user is not None:
             login(request, user)
             return redirect("dashboard")
@@ -161,7 +161,7 @@ def user_logout(request):
 def dashboard(request):
     user = Author.objects.get( user = request.user )
     try:
-        associated_author = Author.objects.get()
+        associated_author = Author.objects.get( user = user )
     except Exception as e:
         associated_author = user
     return render(request , "blog/dashboard.html",{
@@ -192,6 +192,16 @@ def create_new_blog( request):
         return redirect("home")   
     return render(request , "blog/home.html")
 
+@login_required(login_url= 'user_login')
+def delete_blog(request , blog_id):
+    user = request.user
+    author = user.author
+    blog = Post.objects.get( post_id = blog_id )
+    if blog.author == author:
+        blog.delete()
+        messages.info(request , "Blo successfully deleted")
+    else:
+        messages.info(request , "Can't delete this  blog. you are not authorized")
 
 
 
@@ -253,6 +263,5 @@ def settings(request):
 
 @login_required(login_url='user_login')
 def applySettings(request):
-
     return render(request , "blog/home.html")
 

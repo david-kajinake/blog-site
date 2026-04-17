@@ -19,7 +19,13 @@
             Create New Blog
         </a>
     </header>
-
+    <p>
+        <h3> 
+            {% for message in messages %}
+             {{ message }}
+             {% endfor %} 
+            </h3>
+    </p>
     <section class="blogs-stats">
         <div class="stat-card">
             <span class="stat-label">Total Posts</span>

@@ -19,6 +19,7 @@ urlpatterns = [
     path("profile/",views.profile , name = "profile") ,
     path("settings/",views.settings , name = "settings"),
     path("search/",views.search , name = "search") ,
+    path("post/<int:post_id>/delete/", views.delete_blog ) , 
     path("post/<int:post_id>/add_comment/" , views.add_comment , name = "add_comment"),
     path("post/<int:post_id>/" , views.post_list , name = "post_list"),
     path("post/<int:post_id>/add_report/" , views.add_report , name = "add_report"),
